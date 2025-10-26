@@ -1,5 +1,5 @@
 services:
-  api:
+  evolution-api:
     container_name: evolution_api
     image: evolution/api:local
     build: .

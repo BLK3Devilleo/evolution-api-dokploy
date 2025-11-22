@@ -21,7 +21,7 @@ services:
 
   frontend:
     container_name: evolution_frontend
-    image: evoapicloud/evolution-manager:latest
+    build: ./evolution-manager-v2
     restart: always
     ports:
       - "8081:80"

@@ -29,7 +29,7 @@ function isEmoji(str: string) {
 }
 
 export class SendMessageController {
-  constructor(private readonly waMonitor: WAMonitoringService) {}
+  constructor(private readonly waMonitor: WAMonitoringService) { }
 
   public async sendTemplate({ instanceName }: InstanceDto, data: SendTemplateDto) {
     return await this.waMonitor.waInstances[instanceName].templateMessage(data);
@@ -87,7 +87,11 @@ export class SendMessageController {
   }
 
   public async sendContact({ instanceName }: InstanceDto, data: SendContactDto) {
-    return await this.waMonitor.waInstances[instanceName].contactMessage(data);
+    const instance = this.waMonitor.waInstances[instanceName];
+    if (!instance) {
+      throw new BadRequestException(`Instance ${instanceName} not found or not connected`);
+    }
+    return await instance.contactMessage(data);
   }
 
   public async sendReaction({ instanceName }: InstanceDto, data: SendReactionDto) {

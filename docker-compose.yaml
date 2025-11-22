@@ -27,6 +27,8 @@ services:
       - "8081:80"
     networks:
       - evolution-net
+    volumes:
+      - ./nginx-config/nginx.conf:/etc/nginx/conf.d/nginx.conf
 
   redis:
     container_name: evolution_redis

@@ -25,7 +25,7 @@ services:
     image: evoapicloud/evolution-manager:latest
     restart: always
     ports:
-      - "3001:80"
+      - "3009:80"
     networks:
       - evolution-net
 
